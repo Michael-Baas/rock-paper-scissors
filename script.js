@@ -20,6 +20,8 @@ Assignment
         c. Use prompt() to get input from the user. Read the docs here if you need to.
         d. Feel free to re-work your previous functions if you need to. Specifically, you might want to change the return value to something more useful.
         e. Feel free to create more “helper” functions if you think it would be useful.
+
+Written by Michael Baas, Feb 8, 2022
 */
 
 
@@ -64,11 +66,9 @@ function playerPlay(){
 
 // Proper Capitalization Function - formats arguments first letter to be capital and the rest to be lowercase. 
 function formatSelection(string) {
-    let firstLetter = string.slice(0,1);
-    let upperFirstLetter = firstLetter.toUpperCase();
-    let restLetters = string.slice(1);
-    let lowerRestLetters = restLetters.toLowerCase();
-    return upperFirstLetter + lowerRestLetters
+    let firstLetter = string.slice(0,1).toUpperCase();
+    let restLetters = string.slice(1).toLowerCase();
+    return firstLetter + restLetters
 }
 
 // Play Round Function (playerSelection, computerSelection) -  determine winner based on player and computer selection, return a message declaring a winner and winning "hand" ex. "You Lose! Paper beats Rock"
@@ -118,8 +118,7 @@ function playGame(){
         else if (result == "tie") {
             tie++;
         }
-}
-
+    }
     // Logic to declare winner of all 5 games and display winner
     if (playerScore > computerScore){
         window.alert(`You win! You beat the computer ${playerScore} times!`)
@@ -135,4 +134,4 @@ function playGame(){
     }
 }
 
-
+playGame();
