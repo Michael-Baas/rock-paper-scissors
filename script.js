@@ -23,72 +23,116 @@ Assignment
 */
 
 
-// #####################################################################################################
 // Computer Play Function - randomly returns the computers "hand", either rock, paper, or scissors 
-/* 
-function computerPlay()
-must calculate a random number between 0 & 1 - then co-relate that number to either R P or S and return the computer's "hand"
-const rock = "rock"
-const paper = "paper"
-const scissors = "scissors"
-let hand = math.random() for random number? 
-
-if hand <= .33 {
-    return rock
+function computerPlay() {
+    // Set RPS variables
+    const rock = "rock";
+    const paper = "paper";
+    const scissors = "scissors";
+    // Determine computer hand based on random number
+    let hand = Math.random();  
+    // Return computer "hand" as RPS 
+    if (hand <= .33) {
+        return rock
+    }
+    else if (hand > .33 && hand <= .66) {
+        return paper
+    }
+    else if (hand > .66 && hand < 1) { // Dont need hand <= 1 because Math.random() only generates between 0 and up to but not including 1
+        return scissors
+    }
+    else {
+        window.alert('Error')
+    } 
 }
-elif hand > .33 && hand <= .66 {
-    return paper
-}
 
-elif hand > .66 && hand <= 1 {
-    return scissors
-}
-
-else: alert error 
-*/
-// #####################################################################################################
-
-// #####################################################################################################
 // Player Play Function () - takes users input, case insensitively and returns the players "hand" to be "thrown"
-/*
-// userInput = window.prompt("Rock, Paper, or Scissors?")
-// userInput.toLowerCase()
-// if (userInput != "rock" || userInput != "paper" || userInput != "scissors") {
-    window.alert("Please enter either Rock, Paper, or Scissors.")
+function playerPlay(){
+    // Collect user input
+    userInput = window.prompt("Rock, Paper, or Scissors?");
+    // Format user input to lowercase for comparison use in playRound()
+    userInput.toLowerCase();
+    // Return player "hand"
+    if (userInput == "rock" || userInput == "paper" || userInput == "scissors") {
+        return userInput
+    }
+    // Return error message if RPS string isn't entered
+    else {
+        return window.alert("Please enter either Rock, Paper, or Scissors.")
+    }
 }
-// return userInput
-*/
-// #####################################################################################################
 
-// #####################################################################################################
+// Proper Capitalization Function - formats arguments first letter to be capital and the rest to be lowercase. 
+function formatSelection(string) {
+    let firstLetter = string.slice(0,1);
+    let upperFirstLetter = firstLetter.toUpperCase();
+    let restLetters = string.slice(1);
+    let lowerRestLetters = restLetters.toLowerCase();
+    return upperFirstLetter + lowerRestLetters
+}
+
 // Play Round Function (playerSelection, computerSelection) -  determine winner based on player and computer selection, return a message declaring a winner and winning "hand" ex. "You Lose! Paper beats Rock"
-/* 
-// if player selection is rock and computer selection is scissors or if player selection is paper and computer selection is rock or if playerSelection is scissors and computerSelection is paper
-// print you win playerSelection beats computerSelection 
-// winner = player
-// else
-// print you lose, computerSelection beats playerSelection
-// winner = computer
-*/
-// #####################################################################################################
+function playRound(playerSelection, computerSelection) {
+    // Set winning logic
+    if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")) {
+        playerSelection = formatSelection(playerSelection);
+        computerSelection = formatSelection(computerSelection);
+        window.alert(`You Win! ${playerSelection} beats ${computerSelection}!`);
+        return "winner"
+    }
+    // Set tie logic
+    else if (playerSelection == computerSelection) {
+        playerSelection = formatSelection(playerSelection);
+        computerSelection = formatSelection(computerSelection);
+        window.alert(`It's a Tie! ${playerSelection} and ${computerSelection} equal out!`);
+        return "tie"
+    }
+    // Set losing logic
+    else {
+        playerSelection = formatSelection(playerSelection);
+        computerSelection = formatSelection(computerSelection);
+        window.alert(`You Lose! ${computerSelection} beats ${playerSelection}!`)
+        return "loser"
+    }
+}
 
-
-// #####################################################################################################
 // Game Function - play best out of 5 rounds and display the winner and their score
-// need to run all functions inside this function
-// let computerSelection = computerPlay()
-// let playerSelection = playerPlay()
-// let computerScore
-// let playerScore
-// let result
+function playGame(){
+    // Set scoring variables 
+    let computerScore = 0;
+    let playerScore = 0;
+    let tie = 0;
+    let result = '';
+    // Loop through 5 iterations of the game
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = computerPlay();
+        let playerSelection = playerPlay();
+        result = playRound(computerSelection, playerSelection);
+        // Add scores up from loop
+        if (result == "winner") {
+            playerScore++;
+        }
+        else if (result == "loser") {
+            computerScore++;
+        }
+        else if (result == "tie") {
+            tie++;
+        }
+}
 
-// loop 5 times
-// result = playRound()
-// if playRound() = player
-// playerScore ++
-// if playRound() = computer
-// computerScore ++ 
+    // Logic to declare winner of all 5 games and display winner
+    if (playerScore > computerScore){
+        window.alert(`You win! You beat the computer ${playerScore} times!`)
+    }
+    else if (computerScore > playerScore){
+        window.alert(`You lose! The computer beat you ${computerScore} times!`)
+    }
+    else if (playerScore == computerScore){
+        window.alert(`It's a tie! You and the computer won ${playerScore} times and there was ${tie} tie.`)
+    }
+    else {
+        window.alert("Error, there should be a winner with 5 rounds.")
+    }
+}
 
-// report winner and loser and score of each with console.log
 
-// #####################################################################################################
