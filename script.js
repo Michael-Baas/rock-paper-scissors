@@ -28,7 +28,7 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        playRound(button.innerText.toLowerCase(), computerPlay())
+        playGame(button.innerText)
     })
 })
 
@@ -61,7 +61,7 @@ function playerPlay(userInput){
     // Collect user input
     // userInput = window.prompt("Rock, Paper, or Scissors?");
     // Format user input to lowercase for comparison use in playRound()
-    // userInput.toLowerCase();
+    userInput = userInput.toLowerCase();
     // Return player "hand"
     if (userInput == "rock" || userInput == "paper" || userInput == "scissors") {
         return userInput
@@ -105,41 +105,37 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Game Function - play best out of 5 rounds and display the winner and their score
-// function playGame(){
-//     // Set scoring variables 
-//     let computerScore = 0;
-//     let playerScore = 0;
-//     let tie = 0;
-//     let result = '';
-//     // Loop through 5 iterations of the game
-//     for (let i = 0; i < 5; i++) {
-//         let computerSelection = computerPlay();
-//         let playerSelection = playerPlay();
-//         result = playRound(computerSelection, playerSelection);
-//         // Add scores up from loop
-//         if (result == "winner") {
-//             playerScore++;
-//         }
-//         else if (result == "loser") {
-//             computerScore++;
-//         }
-//         else if (result == "tie") {
-//             tie++;
-//         }
-//     }
-//     // Logic to declare winner of all 5 games and display winner
-//     if (playerScore > computerScore){
-//         window.alert(`You win! You beat the computer ${playerScore} times!`)
-//     }
-//     else if (computerScore > playerScore){
-//         window.alert(`You lose! The computer beat you ${computerScore} times!`)
-//     }
-//     else if (playerScore == computerScore){
-//         window.alert(`It's a tie! You and the computer won ${playerScore} times and there was ${tie} tie.`)
-//     }
-//     else {
-//         window.alert("Error, there should be a winner with 5 rounds.")
-//     }
-// }
+function playGame(input){
+    // Set scoring variables 
+    let computerScore = document.querySelector('#computerScore').innerText;
+    let playerScore = document.querySelector('#playerScore').innerText;
+    let tie = document.querySelector('#ties').innerText;
+    let result = '';
 
-// playGame();
+    let computerSelection = computerPlay();
+    let playerSelection = playerPlay(input);
+    result = playRound(playerSelection, computerSelection);
+    // Add scores up from loop
+    if (result == "winner") {
+        playerScore++;
+        document.querySelector('#playerScore').innerText = playerScore;
+    }
+    else if (result == "loser") {
+        computerScore++;
+        document.querySelector('#computerScore').innerText = computerScore;
+    }
+    else{
+        tie++;
+        document.querySelector('#ties').innerText = tie;
+    }
+    
+    // Logic to declare winner of all 5 games and display winner
+    if (playerScore >= 5 ){
+        document.querySelector('#bestOfFive').innerText = `You win! You beat the computer ${playerScore} times!`
+    }
+    else if (computerScore >= 5){
+        document.querySelector('#bestOfFive').innerText = `You lose! The computer beat you ${computerScore} times!`
+    }
+}
+
+

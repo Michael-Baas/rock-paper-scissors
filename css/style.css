@@ -16,6 +16,14 @@
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+#bestOfFive{
+  font-size: 5rem;
+  font-weight: bold;
+  color: rgba(255,	123,	114,	1);
+
+}
+
 body {
   background: rgba(15,	207,	125, 1); 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
