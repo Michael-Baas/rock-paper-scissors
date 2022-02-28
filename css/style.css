@@ -1,0 +1,66 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+body {
+  background: rgba(15,	207,	125, 1); 
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.6rem;
+  color: rgb(22, 41, 95);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  
+}
+
+
+button{
+  background: rgb(22, 41, 95);
+  color:rgba(15,	207,	125, 1); 
+  padding: .5rem 1.5rem;
+  margin: 1rem 0;
+}
+
+.container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+
+}
+
+.flex-row{
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+.space-between{
+  justify-content: space-between;
+  width: 100%;
+}
+
+#results{
+  margin: 3rem;
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgb(223, 45, 184);
+}

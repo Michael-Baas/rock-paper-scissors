@@ -85,21 +85,21 @@ function playRound(playerSelection, computerSelection) {
     if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")) {
         playerSelection = formatSelection(playerSelection);
         computerSelection = formatSelection(computerSelection);
-        window.alert(`You Win! ${playerSelection} beats ${computerSelection}!`);
+        document.querySelector('#results').innerText = `You Win! ${playerSelection} beats ${computerSelection}!`;
         return "winner"
     }
     // Set tie logic
     else if (playerSelection == computerSelection) {
         playerSelection = formatSelection(playerSelection);
         computerSelection = formatSelection(computerSelection);
-        window.alert(`It's a Tie! ${playerSelection} and ${computerSelection} equal out!`);
+        document.querySelector('#results').innerText = `It's a Tie! ${playerSelection} and ${computerSelection} equal out!`;
         return "tie"
     }
     // Set losing logic
     else {
         playerSelection = formatSelection(playerSelection);
         computerSelection = formatSelection(computerSelection);
-        window.alert(`You Lose! ${computerSelection} beats ${playerSelection}!`)
+        document.querySelector('#results').innerText = `You Lose! ${computerSelection} beats ${playerSelection}!`;
         return "loser"
     }
 }
